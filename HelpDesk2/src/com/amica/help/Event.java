@@ -12,27 +12,27 @@ import lombok.Getter;
 @Getter
 public class Event {
 
-	private long timestamp;
-	private Status newStatus;
-	private String note;
-  
-	public Event(String note) {
-		this(null, note);
-	}
-  
-	public Event(Status newStatus, String note) {
-		this.timestamp= Clock.getTime();
-		this.newStatus = newStatus;
-		this.note = note;
-	}
+    private long timestamp;
+    private Status newStatus;
+    private String note;
 
-	@Override
-	public String toString() {
-		String result = "Event: " + note;
-		if (newStatus != null) {
-			result += " [" + newStatus + "]";
-		}
-		result += " (" + Clock.format(timestamp) + ")";
-		return result;
-	}
+    public Event(String note) {
+        this(null, note);
+    }
+
+    public Event(Status newStatus, String note) {
+        this.timestamp= Clock.getTime();
+        this.newStatus = newStatus;
+        this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        String result = "Event: " + note;
+        if (newStatus != null) {
+            result += " [" + newStatus + "]";
+        }
+        result += " (" + Clock.format(timestamp) + ")";
+        return result;
+    }
 }

@@ -16,35 +16,35 @@ import lombok.Getter;
 @EqualsAndHashCode(of="ID")
 public class Technician implements Comparable<Technician> {
 
-	private String ID;
-	private String name;
-	private int extension;
-	private SortedSet<Ticket> activeTickets = new TreeSet<>();
+    private String ID;
+    private String name;
+    private int extension;
+    private SortedSet<Ticket> activeTickets = new TreeSet<>();
 
-	public Technician(String ID, String name, int extension) {
-		this.ID = ID;
-		this.name = name;
-		this.extension = extension;
-	}
-  
-	public Stream<Ticket> getActiveTickets() {
-		return activeTickets.stream();
-	}
-  
-	public boolean assignTicket(Ticket ticket) {
-		return activeTickets.add(ticket);
-	}
-	
-	public boolean resolveTicket(Ticket ticket) {
-		return activeTickets.remove(ticket);
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("Technician %s, %s", ID, name);
-	}
-  
-	public int compareTo(Technician other) {
-		return ID.compareTo(other.getID());
-	}
+    public Technician(String ID, String name, int extension) {
+        this.ID = ID;
+        this.name = name;
+        this.extension = extension;
+    }
+
+    public Stream<Ticket> getActiveTickets() {
+        return activeTickets.stream();
+    }
+
+    public boolean assignTicket(Ticket ticket) {
+        return activeTickets.add(ticket);
+    }
+
+    public boolean resolveTicket(Ticket ticket) {
+        return activeTickets.remove(ticket);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Technician %s, %s", ID, name);
+    }
+
+    public int compareTo(Technician other) {
+        return ID.compareTo(other.getID());
+    }
 }

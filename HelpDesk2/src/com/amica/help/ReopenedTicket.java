@@ -2,6 +2,7 @@ package com.amica.help;
 
 import java.util.stream.Stream;
 
+import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -11,28 +12,28 @@ import lombok.Getter;
  */
 public class ReopenedTicket extends Ticket {
 
-	@Getter
-	private Ticket priorTicket;
-  
-	public ReopenedTicket(int ID, Ticket priorTicket, 
-			String reason, Priority priority) {
-		super(ID, priorTicket.getOriginator(), reason, priority);
-		this.priorTicket = priorTicket;
-		assign(priorTicket.getTechnician());
-	}
-  
-	@Override
-	public Stream<Event> getHistory() {
-		return Stream.concat(priorTicket.getHistory(), super.getHistory());
-	}
-  
-	@Override
-	public Stream<Tag> getTags() {
-		return Stream.concat(priorTicket.getTags(), super.getTags());
-	}
-  
-	@Override
-	public boolean includesText(String text) {
-		return super.includesText(text) || priorTicket.includesText(text);
-	}
+    @Getter
+    private Ticket priorTicket;
+
+    public ReopenedTicket(int ID, Ticket priorTicket,
+                          String reason, Priority priority) {
+        super(ID, priorTicket.getOriginator(), reason, priority);
+        this.priorTicket = priorTicket;
+        assign(priorTicket.getTechnician());
+    }
+
+    @Override
+    public Stream<Event> getHistory() {
+        return Stream.concat(priorTicket.getHistory(), super.getHistory());
+    }
+
+    @Override
+    public Stream<Tag> getTags() {
+        return Stream.concat(priorTicket.getTags(), super.getTags());
+    }
+
+    @Override
+    public boolean includesText(String text) {
+        return super.includesText(text) || priorTicket.includesText(text);
+    }
 }
