@@ -19,13 +19,13 @@ public class TestProgram {
     // This is a helper to simplify maintenance of the test code.
     // For now "suspend" is just addigng a note; it will be more specific later.
     public static void suspend(int ticketID, String reason) {
-        addNote(ticketID, reason);
+        helpDesk.getTicketByID(ticketID).suspend(reason);
     }
 
     // This is a helper to simplify maintenance of the test code.
     // For now "resume" is just addigng a note; it will be more specific later.
     public static void resume(int ticketID, String reason) {
-        addNote(ticketID, reason);
+        helpDesk.getTicketByID(ticketID).resume(reason);
     }
 
     public static void resolve(int ticketID, String reason) {
@@ -467,6 +467,12 @@ public class TestProgram {
         System.out.println();
     }
 
+    public static void test9_Waiting() {
+        System.out.println("Running test 9, waiting ...");
+        assertCount(helpDesk.getTicketsByStatus(Status.WAITING), 3, "There should be 3 tickets that got suspended.");
+        System.out.println();
+    }
+
     public static void test10_LatestActivity() {
 
         System.out.println("Running test 10, latest activity ...");
@@ -499,6 +505,7 @@ public class TestProgram {
         test6_TextSearch();
         test7_ReopenedTickets();
         test8_Synonyms();
+        test9_Waiting();
         test10_LatestActivity();
     }
 }
