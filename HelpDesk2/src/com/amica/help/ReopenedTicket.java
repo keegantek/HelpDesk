@@ -2,6 +2,7 @@ package com.amica.help;
 
 import java.util.stream.Stream;
 
+import lombok.Data;
 import lombok.Getter;
 
 /**

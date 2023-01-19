@@ -1,10 +1,6 @@
 package com.amica.help;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -123,5 +119,11 @@ public class HelpDesk implements HelpDeskAPI {
 
     public Stream<Ticket> getTicketsByText(String text) {
         return tickets.stream().filter(t -> t.includesText(text));
+    }
+
+    public Stream<Event> getLatestActivity() {
+        return getTickets().flatMap(Ticket::getHistory)
+                .sorted(Collections.reverseOrder(Comparator.comparing(Event::getTimestamp)))
+                .limit(10);
     }
 }

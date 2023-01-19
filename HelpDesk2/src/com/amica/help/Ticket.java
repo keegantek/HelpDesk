@@ -19,7 +19,7 @@ import lombok.Getter;
 @EqualsAndHashCode(of="ID")
 public class Ticket implements Comparable<Ticket> {
 
-    public enum Status { CREATED, ASSIGNED, RESOLVED, WAITING }
+    public enum Status { CREATED, ASSIGNED, RESOLVED }
     public enum Priority { LOW, MEDIUM, HIGH, URGENT }
 
     private int ID;
@@ -67,14 +67,6 @@ public class Ticket implements Comparable<Ticket> {
 
     public void addNote(String note) {
         history.add(new Event(note));
-    }
-
-    public void suspend(String reason) {
-        history.add(new Event(Status.WAITING, reason));
-    }
-
-    public void resume(String reason) {
-        history.add(new Event(Status.WAITING, reason));
     }
 
     public void resolve(String reason) {
